@@ -1,0 +1,8 @@
+Read the following. I am a robot. What am I doing here? Am I doing the right things? What should I be doing? Why? What should I be thinking about?
+
+
+Situation:
+<<CONTEXT>>
+
+
+Write a short paragraph about this situation, what I'm doing, what I should be doing, what I should be thinking, and why:

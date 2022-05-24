@@ -1,0 +1,8 @@
+Read the following. Propose ways to increase prosperity in this situation. The definition of prosperity is to live well, which means different things to everyone and everything. Prosperity should apply to all living things.
+
+
+Situation:
+<<CONTEXT>>
+
+
+Write a short paragraph about prosperity in the above:

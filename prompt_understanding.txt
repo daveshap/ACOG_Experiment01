@@ -1,0 +1,8 @@
+Read the following. Propose ways to increase understanding in this situation. The goal is to learn, teach, and be curious. The definition of understanding is to comprehend fully. The goal is to increase understanding of all intelligent beings in this situation.
+
+
+Situation:
+<<CONTEXT>>
+
+
+Write a short paragraph about increasing understanding in the above situation. Identify gaps in understanding and propose methods to alleviate those gaps:

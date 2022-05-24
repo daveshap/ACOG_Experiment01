@@ -4,6 +4,10 @@ from time import time,sleep
 import numpy as np
 
 
+with open('openaiapikey.txt', 'r') as infile:
+    open_ai_api_key = infile.read()
+openai.api_key = open_ai_api_key
+
 
 def save_memory(content, label):
     filename = 'nexus/%s_%s.txt' % (time(), label)
@@ -124,6 +128,7 @@ if __name__ == '__main__':
         memories = stack_memories(relevant + latest)
         cognitive_tasks = list()
         for d in prompt_list:  # cognitive control loop
+            # what's going on?
             # what am I doing?
             # what should I be doing?
             # how should I do it?

@@ -1,0 +1,9 @@
+Read the following. I am a robot. Given the following situation, come up with a list of specific possible actions. Be as explicit and detailed as possible. Explain why for each action.
+
+
+Situation:
+<<CONTEXT>>
+
+
+Write a detailed list of potential actions to take and explain why for each:
+-
