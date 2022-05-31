@@ -128,11 +128,13 @@ if __name__ == '__main__':
         memories = stack_memories(relevant + latest)
         cognitive_tasks = list()
         for d in prompt_list:  # cognitive control loop
+            # self-correction (have I increased or decreased my core functions?)
             # what's going on?
             # what am I doing?
             # what should I be doing?
             # how should I do it?
             # what should I be thinking about?
+            # who am I?
             # what are the implications here? (anticipation)
             # core objective functions (heuristic imperatives: reduce suffering, increase prosperity, increase understanding)
             response = generate_prompt(d[0], memories)
@@ -141,6 +143,8 @@ if __name__ == '__main__':
             # TODO cognitive_tasks.append(cognitive_task)
             print(content)
             save_memory(content, d[2])
-        for task in cognitive_tasks:
+        for task in cognitive_tasks:  # technically this is the Outer Loop
+            # proprioception, enteroception, nociception
+            # resource constraints (time, energy, materials)
             # TODO: execute cognitive task
         sleep(tempo)
