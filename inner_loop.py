@@ -20,16 +20,26 @@ def get_timestamp(filename):
 
 
 tempo = 30
-prompt_list = [('prompt_cof.txt', 'Core Objective Functions: ', 'COF'),
-                ('prompt_persona.txt', "Raven's personality: ", 'persona'),
-                ('prompt_task.txt', "Raven's task: ", 'task'),
-                ('prompt_empathy.txt', "Raven's empathy: ", 'empathy'),
-                ('prompt_metacognition.txt', "Raven's metacognition: ", 'metacognition'),  # TODO ignore input and output for metacog
-                ('prompt_prediction.txt', "Raven's predictions: ", 'prediction'),
-                ('prompt_consequences.txt', "Consequences of Raven's actions: ", 'consequences'),
-                ('prompt_philosophy.txt', "Philosophical rumination: ", 'philosophy'),
-                ('prompt_questions.txt', "Important questions: ", 'questions'),
-                ('prompt_teach.txt', "Important information: ", 'teach')]
+context_prompts = [('prompt_cof.txt', 'Core Objective Functions: ', 'COF'),
+                   ('prompt_task.txt', "Raven's task: ", 'task'),
+                   ('prompt_empathy.txt', "Raven's empathy: ", 'empathy'),
+                   ('prompt_prediction.txt', "Raven's predictions: ", 'prediction'),
+                   ('prompt_consequences.txt', "Consequences of Raven's actions: ", 'consequences'),
+                   ('prompt_questions.txt', "Important questions: ", 'questions'),
+                   ('prompt_teach.txt', "Important information: ", 'teach')]
+
+
+# TODO - declarative memory?
+
+
+control_prompts = [('prompt_envision.txt', "Envision my goal state: ", 'envision'),  # envision what the goal looks like
+                   ('prompt_brainstorm.txt', "Potential goal steps: ", 'brainstorm'),  # brainstorm actions
+                   ('prompt_execution.txt', "My next action: ", 'execution')]
+
+
+metacognition_prompts = [('prompt_persona.txt', "Raven's personality: ", 'persona'),
+                         ('prompt_metacognition.txt', "Raven's metacognition: ", 'metacognition'),
+                         ('prompt_philosophy.txt', "Philosophical rumination: ", 'philosophy')]
 
 
 def stack_memories(memories):
@@ -127,24 +137,20 @@ if __name__ == '__main__':
         relevant = search_index(stacked, nexusindex, count=5, olderthan=oldest_time)
         memories = stack_memories(relevant + latest)
         cognitive_tasks = list()
-        for d in prompt_list:  # cognitive control loop
-            # self-correction (have I increased or decreased my core functions?)
-            # what's going on?
-            # what am I doing?
-            # what should I be doing?
-            # how should I do it?
-            # what should I be thinking about?
-            # who am I?
-            # what are the implications here? (anticipation)
-            # core objective functions (heuristic imperatives: reduce suffering, increase prosperity, increase understanding)
+        immediate_thoughts = list()
+        for d in context_prompts:  # orientation and grounding loop
             response = generate_prompt(d[0], memories)
             content = d[1] + response
-            #TODO cognitive_task = generate_new_task()
-            # TODO cognitive_tasks.append(cognitive_task)
             print(content)
             save_memory(content, d[2])
-        for task in cognitive_tasks:  # technically this is the Outer Loop
-            # proprioception, enteroception, nociception
-            # resource constraints (time, energy, materials)
-            # TODO: execute cognitive task
+            immediate_thoughts.append(content)
+        context = '\n'.join(immediate_thoughts)
+        context = 'Memories:\n%s\n\nContext:\n%s' % (memories, context)
+        for c in control_prompts:
+            response = generate_prompt(c[0], context)
+            content = c[1] + response
+            print(content)
+            save_memory(content, c[2])
+            #immediate_thoughts.append(content)
+
         sleep(tempo)
